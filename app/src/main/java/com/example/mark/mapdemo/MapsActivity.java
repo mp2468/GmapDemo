@@ -24,6 +24,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
+    /*
+    1. Display Map
+    2. Input Location
+    3. Get user location
+    4. get distance and toast it
+    5. display 2 most recent locations inputted
+
+     */
+
 
     /**
      * Manipulates the map once available.
@@ -40,7 +49,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
+//        LatLng Baltimore = new LatLng();
+
+
+
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+
 }

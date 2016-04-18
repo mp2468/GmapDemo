@@ -1,8 +1,47 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.mark.mapdemo.MapsActivity" />
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:weightSum="2"
+android:orientation="vertical" >
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="112dp">
+
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="101dp"
+        android:background="#779ea3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Input Location"
+            android:id="@+id/inputLoc"
+            android:layout_gravity="center_vertical" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationField"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="location" />
+    </LinearLayout>
+</LinearLayout>
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.example.mark.mapdemo.MapsActivity"
+        tools:layout="@layout/abc_search_dropdown_item_icons_2line"
+        />
+
+
+</LinearLayout>
