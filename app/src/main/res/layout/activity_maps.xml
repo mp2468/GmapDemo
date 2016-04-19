@@ -7,30 +7,42 @@ android:weightSum="2"
 android:orientation="vertical" >
 
 <LinearLayout android:layout_width="match_parent"
-    android:layout_height="112dp">
+    android:layout_height="wrap_content">
 
 
     <LinearLayout android:layout_width="match_parent"
-        android:layout_height="101dp"
+        android:layout_height="wrap_content"
         android:background="#779ea3">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Input Location"
-            android:id="@+id/inputLoc"
-            android:layout_gravity="center_vertical" />
+            android:text="Input"
+            android:id="@+id/inputLoc" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/locationField"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="location" />
+            android:id="@+id/LatField"
+            android:layout_weight="0.35"
+            android:text="Latitude" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/LongField"
+            android:layout_weight="0.78"
+            android:text="Longtude" />
     </LinearLayout>
 </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/subButton"
+        android:layout_gravity="center_horizontal" />
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -38,7 +50,7 @@ android:orientation="vertical" >
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:context="com.example.mark.mapdemo.MapsActivity"
         tools:layout="@layout/abc_search_dropdown_item_icons_2line"
         />
