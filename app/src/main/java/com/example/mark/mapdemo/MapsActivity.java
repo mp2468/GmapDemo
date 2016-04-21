@@ -2,12 +2,18 @@ package com.example.mark.mapdemo;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,6 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
+    private LocationManager locationmanager_;
     private GoogleMap mMap;
     private EditText latE, longE;
     private Button submitLoc;
@@ -37,6 +44,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         submitLoc.setOnClickListener(this);
     }
+
+
 
     /*
     1. Display Map
@@ -75,18 +84,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //https://developers.google.com/maps/documentation/android-api/location#the_my_location_layer
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        LatLng Baltimore = new LatLng(39, -76);
+        //LatLng sydney = new LatLng(-34, 151);
+        //LatLng Baltimore = new LatLng(39, -76);
 
 
 
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //mMap.addMarker(new MarkerOptions().position(Baltimore).title("Marker in Baltimore"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(Baltimore));
     }
+
+    public void toastIt(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void compareLoc(){
+        //toastIt("in compare location function...");
+        if(latE.getText().toString() != "Latitude" && longE.getText().toString() != "Longitude")
+        {
+            double latDouble = new Double(latE.getText().toString()).doubleValue();
+            double longDouble = new Double(longE.getText().toString()).doubleValue();
+            LatLng input = new LatLng(latDouble, longDouble);
+            //toastIt("Lat = " + latDouble + " Long = " + longDouble);
+            mMap.addMarker(new MarkerOptions().position(input).title("Marker at inputted location"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(input));
+
+            Location inputLoc = new Location("");
+            inputLoc.setLatitude(latDouble);
+            inputLoc.setLongitude(longDouble);
+            Location userLoc = new Location("");
+            userLoc.setLatitude(userLoc.getLatitude());
+            userLoc.setLongitude(userLoc.getLongitude());
+
+            double distance = userLoc.distanceTo(inputLoc);
+            toastIt("You are "+ distance +" meters from your inputted location.");
+
+        }else
+            toastIt("input both lat and long values please");
+
+    }
+
 
 
     @Override
     public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.subButton:
+                compareLoc();
+                break;
+        }
 
     }
 }
